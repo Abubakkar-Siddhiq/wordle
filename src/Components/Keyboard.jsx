@@ -1,39 +1,30 @@
-const Key = ({ value }) => <h1 className="p-1 flex-1 rounded-md bg-gray-300 text-gray-700 text-xs font-bold h-9 grid place-items-center hover:bg-gray-200">{value}</h1>; 
+import { useEffect, useState } from "react";
 
-export default function Keyboard() {
-    const keyData = [
-        "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
-        "A", "S", "D", "F", "G", "H", "J", "K", "L",
-        "", "Z", "X", "C", "V", "B", "N", "M", ""
-    ];
+const Key = ({ value, isActive }) => <h1 className={`px-2 py-1 flex-1 rounded-md text-gray-700 font-bold h-12 grid place-items-center hover:bg-gray-200 ${ isActive ? 'bg-gray-100' : 'bg-gray-300' }`}>{value}</h1>; 
+ 
+export default function Keyboard( { activeKey, keyData } ) {
     
     return (
-        <div className="flex flex-col gap-1 w-[75%] items-center">
+        <div className="flex flex-col gap-1 w-full items-center">
             <div className="w-full flex items-center gap-1">
                 {
-                    keyData.slice(0, 10).map(i => {
-                        return (
-                          <Key value={i} />
-                        )
-                    })
+                    keyData.slice(0, 10).map(i => (
+                        <Key value={i} isActive={i == activeKey} />
+                    ))
                 }
             </div>
             <div className="w-full flex items-center gap-1">
                 {
-                    keyData.slice(10, 19).map(i => {
-                        return (
-                            <Key value={i} />
-                        )
-                    })
+                    keyData.slice(10, 19).map(i => (
+                        <Key value={i} isActive={i == activeKey} />
+                    ))
                 }
             </div>
             <div className="w-full flex items-center gap-1">
                 {
-                    keyData.slice(19,).map(i => {
-                        return (
-                            <Key value={i} />
-                        )
-                    })
+                    keyData.slice(19,).map(i => (
+                            <Key value={i} isActive={i == activeKey} />
+                        ))
                 }
             </div>
         </div>
