@@ -1,4 +1,4 @@
-import GameLayout from './Layout/GameLayout'
+import GameLayout from './Layout/GameLayout';
 
 function App() {
 
@@ -9,4 +9,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
