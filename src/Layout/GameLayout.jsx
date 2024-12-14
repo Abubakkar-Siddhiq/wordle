@@ -7,18 +7,7 @@ import words from "../words.json";
 export default function GameLayout() {
     const [solution, setSolution] = useState('');
     const [guess, setGuess] = useState(Array(5).fill(""));
-
-
-    // Guesses
-    // [
-    //     "", 0
-    //     "", 1
-    //     "", 2
-    //     "", 3
-    //     "", 4
-    // ]
-
-    const [currentGuess, setCurrentGuess] = useState(0); // 0 - 4 so basically 5.
+    const [currentGuess, setCurrentGuess] = useState(0);
     const [activeKey, setActiveKey] = useState(null);
     
     const keyData = [
@@ -26,10 +15,6 @@ export default function GameLayout() {
         "A", "S", "D", "F", "G", "H", "J", "K", "L",
         "Delete", "Z", "X", "C", "V", "B", "N", "M", "Enter"
     ];
-
-    const check = (x) => {
-        console.log("Check -> ", x)
-    }
 
     // To Handle Inputs
     useEffect(() => {
@@ -43,14 +28,12 @@ export default function GameLayout() {
                     updatedGuess[currentGuess] = updatedGuess[currentGuess]+key;
                     setGuess(updatedGuess);
                 }
-                
             }
             
             if (event.key === "Enter") {
                 setActiveKey("Enter");
                 if(guess[currentGuess].length > 4) {
-                    check(guess[currentGuess]);
-                    setCurrentGuess(prev => prev < 4 ? prev+1 : prev);
+                    setCurrentGuess(prev => prev < 5 ? prev+1 : prev);
                 }
             }
             
@@ -78,13 +61,19 @@ export default function GameLayout() {
     return (
         <section className="w-[40rem] h-full flex flex-col gap-5 items-center justify-center">
             <Navbar />
-            <Board guess={guess} solution={solution} />
+            <Board guess={guess} solution={solution} currentGuess={currentGuess} />
             <Keyboard activeKey={activeKey} keyData={keyData} />
             {solution}
             <br />
-            {"Guess -> ["+guess+"]"}
+            {
+                console.log("Guess -> ", guess)
+            }
+
+            {"Guess: ["+guess+"]"}
+            
             <br />
-            {"Available Guesses -> "+currentGuess}
+            
+            {"Current Operating Index: " + currentGuess}
         </section>
     )
 }
