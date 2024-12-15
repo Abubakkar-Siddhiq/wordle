@@ -3,7 +3,7 @@ const Key = ({ value, isActive, bigKey }) => <h1 className={`px-2 py-1 flex-1 ro
 export default function Keyboard( { activeKey, keyData } ) {
     
     return (
-        <div className="flex flex-col gap-1 w-full items-center">
+        <div className="flex flex-col gap-1 w-full items-center scale-75 md:scale-90">
             <div className="w-full flex items-center gap-1">
                 {
                     keyData.slice(0, 10).map(i => (
