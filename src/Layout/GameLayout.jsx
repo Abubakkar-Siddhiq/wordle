@@ -104,7 +104,7 @@ export default function GameLayout() {
             <Keyboard activeKey={activeKey} keyData={keyData} />
 
             {
-                gameOver.state && <GameOver result={gameOver.result} />
+                gameOver.state && <GameOver result={gameOver.result} solution={solution} />
             }
         </section>
     )
